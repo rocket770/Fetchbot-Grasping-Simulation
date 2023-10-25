@@ -1,6 +1,7 @@
 # Fetchbot-Grasping-Simulation
 
-Controls the fetch bot to find, move to, and grasp an object in front of it.
+Controls the fetch bot to find, move to, and grasp an object in front of it. 
+The code uses matlab to connect to and control the fetch bot. It will first make the fetch bot scan for objects around it, by telling the bot to tilt its camera around while matlab processes the image and looks for a blue object (It will also try to find a better image if possible). Matlab will then calculate the coordinates of the object in the robot base's frame of reference, than use a variety of commands, including a moveit! bridge node written in python to navigate to, and grasp the object. [Here](https://youtu.be/HRn41opEtRI) is a video of it working (this is not my submitted video demo).
 
 ## Contributors
 
