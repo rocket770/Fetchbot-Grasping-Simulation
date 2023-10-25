@@ -11,8 +11,8 @@ def move_to_pose_callback(data):
         global move_group, gripper_frame
     
     	gripper_pose_stamped = PoseStamped()
-   	gripper_pose_stamped.header.frame_id = 'base_link'
-  	gripper_pose_stamped.header.stamp = rospy.Time.now()
+  gripper_pose_stamped.header.frame_id = 'base_link'
+  gripper_pose_stamped.header.stamp = rospy.Time.now()
     	gripper_pose_stamped.pose = data
     	rospy.loginfo("Info Recieved!")
 
