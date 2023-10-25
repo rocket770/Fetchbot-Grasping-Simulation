@@ -6,24 +6,18 @@ from moveit_msgs.msg import MoveItErrorCodes
 from moveit_python import MoveGroupInterface, PlanningSceneInterface
 from geometry_msgs.msg import PoseStamped, Pose, Point, Quaternion
 
-# Note: fetch_moveit_config move_group.launch must be running
-# Safety!: Do NOT run this script near people or objects.
-# Safety!: There is NO perception.
-#          The ONLY objects the collision detection software is aware
-#          of are itself & the floor.
-
 def move_to_pose_callback(data):
     try:
         global move_group, gripper_frame
     
     	gripper_pose_stamped = PoseStamped()
-   	gripper_pose_stamped.header.frame_id = 'base_link'
-  	gripper_pose_stamped.header.stamp = rospy.Time.now()
+   	    gripper_pose_stamped.header.frame_id = 'base_link'
+  	    gripper_pose_stamped.header.stamp = rospy.Time.now()
     	gripper_pose_stamped.pose = data
     	rospy.loginfo("Info Recieved!")
 
     	move_group.moveToPose(gripper_pose_stamped, gripper_frame)
-   	result = move_group.get_move_action().get_result()
+   	    result = move_group.get_move_action().get_result()
 
     	if result:
             if result.error_code.val == MoveItErrorCodes.SUCCESS:
@@ -58,15 +52,15 @@ if __name__ == '__main__':
     # This is the wrist link not the gripper itself
     gripper_frame = 'wrist_roll_link'
 
-    # Construct a "pose_stamped" message as required by moveToPose
+    # Create a "pose_stamped" message as required by moveToPose
     gripper_pose_stamped = PoseStamped()
     gripper_pose_stamped.header.frame_id = 'base_link'
 
     
 
-       # Subscribe to custom topic to receive Pose messages
+    # Subscribe to custom topic to receive the pose messages from matlab
     rospy.Subscriber("/end_effector_pose", Pose, move_to_pose_callback)
-
+    # keep running and listen
     rospy.spin()
 
     move_group.get_move_action().cancel_all_goals()
