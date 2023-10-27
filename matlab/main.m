@@ -1,15 +1,36 @@
-rosshutdown %shuts down existing ROS nodes
+close all;
+clear all;
+
 % for ROS nodes to communicate with the ROS master
 
 % Used to connect to my laptop from my home PC - nick
-%setenv('ROS_MASTER_URI','http://192.168.0.251:11311')
+setenv('ROS_MASTER_URI','http://192.168.0.251:11311')
 
-scanner = BlueScanner();
 
 %% Scan for, and find the center of the object
+rosshutdown  %shuts down existing ROS nodes
+
+scanner = Scanner();
+
+% so far can be 'cube' for blue cube that loads default
+% or can be 'coke' for coke can object
+objectUsed = 'cube';
+
+
+cokeOffsets = [0.055, 0.02, 0.05];
+blueCubeOffsets = [0.07 0.01 0.05];
+
+switch objectUsed
+    case 'cube'
+        objectOffset = blueCubeOffsets;
+        loweringOffset = 0.22;
+    case 'coke'
+        objectOffset = cokeOffsets;
+        loweringOffset = 0.2;
+end
 
 % locating position in 3D space of blue object
-[X,Y,Z] = scanner.scanForBlue();
+[X,Y,Z] = scanner.scan(objectUsed);
 
 % Transform the 3D point's coordinates to them from the camera coordinate frame into the global coordinate frame
 ptBaseLink = applyTransform([X,Y,Z]);
@@ -18,12 +39,12 @@ disp(ptBaseLink)
 % adjusting the obtained readings of coordinates, as we take the bottom
 % front corner, so adjust more towards the center to account for that
 % taking from the front corner showed to be much more accurate and reliable
-% these offsets [0.1 -0.01 0.05] are based on the objects size.
+% these offsets are based on the objects size.
 % THIS SHOULD BE AROUND THE CENTER OF THE OBJECT.
 
-X = ptBaseLink(1) + 0.1;
-Y = ptBaseLink(2) - 0.01;
-Z = ptBaseLink(3) + 0.05;
+X = ptBaseLink(1) + objectOffset(1);
+Y = ptBaseLink(2) - objectOffset(2);
+Z = ptBaseLink(3) + objectOffset(3);
 
 % messages displayed for user to be notified where the coordinates of the object have been found
 disp("Location Found: ")
@@ -34,15 +55,16 @@ disp([X,Y,Z])
 % grippers begin by being open to pick the object up
 moveGripper(1)
 % To reduce chances of hitting the table so the body of the robot needs to risen by 0.7 within 3 seconds
-moveFetchTorso(0.7, 3.0); 
+moveFetchTorso(0.65, 3.0); 
+pause(3);
 % The offsets here are to account for the camera findings and firstly moving a little higher than the object 
 moveToGoal(X, Y, Z + 0.28);
 % The offsets are lowered a little to make sure the camera readings are in the in middle of the object
-moveToGoal(X, Y, Z + 0.23);
+moveToGoal(X, Y, Z + loweringOffset);
 % grippers are to close for object to be grasped
 moveGripper(0);
 % once the grippers are closed, the arm of the robot then lifts up again to bring the object up from the table 
-moveToGoal(X, Y, Z + 0.38);
+moveToGoal(X, Y, Z + 0.3);
 
 
 % this is the function created to move the robot arm to the desired
@@ -73,7 +95,7 @@ function moveToGoal(X, Y, Z)
     send(pub, msg);
     
     % gives the robot some time to process the message and execute movement needed so that the function doesnt return immediately  
-    pause(5)
+    pause(10)
 end
 
 
