@@ -14,7 +14,7 @@ The code uses matlab to connect to and control the fetch bot. It will first make
   - README file
 
 - **Aiden (20%)**
-  - Object Detection (detectBlue() function in matlab/BlueScanner.m)
+  - Object Detection (started working on detectObject() function in matlab/Scanner.m)
   - Matlab Code Comments
 
 - **Nimmo Napier-Rowney (0%)**
