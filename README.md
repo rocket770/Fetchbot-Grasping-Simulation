@@ -5,14 +5,15 @@ The code uses matlab to connect to and control the fetch bot. It will first make
 
 ## Contributors
 
-- **Nick (75%)**
-  - Object Searching (matlab/BlueScanner.m)
+- **Nick (80%)**
+  - Object Searching (matlab/Scanner.m)
   - Object Coordinate Conversion (Pixels -> Camera Coordinate -> Robot Reference Frame Coordinates)
   - Robot Movement Script (entire matlab/main.m script)
   - Matlab moveit! Bridge node (matlab_move_it_bridge, package setup and python script)
+  - Environment Setup
   - README file
 
-- **Aiden (25%)**
+- **Aiden (20%)**
   - Object Detection (detectBlue() function in matlab/BlueScanner.m)
   - Matlab Code Comments
 
