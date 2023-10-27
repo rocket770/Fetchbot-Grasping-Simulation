@@ -5,7 +5,7 @@ The code uses matlab to connect to and control the fetch bot. It will first make
 
 ## Contributors
 
-- **Nick (80%)**
+- **Nick (75%)**
   - Object Searching (matlab/Scanner.m)
   - Object Coordinate Conversion (Pixels -> Camera Coordinate -> Robot Reference Frame Coordinates)
   - Robot Movement Script (entire matlab/main.m script)
@@ -13,7 +13,7 @@ The code uses matlab to connect to and control the fetch bot. It will first make
   - Environment Setup
   - README file
 
-- **Aiden (20%)**
+- **Aiden (25%)**
   - Object Detection (started working on detectObject() function in matlab/Scanner.m)
   - Matlab Code Comments
 
