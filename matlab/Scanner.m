@@ -14,7 +14,7 @@ classdef Scanner
     end
     
     methods
-        function obj = Scanner(rosMasterURI) 
+        function obj = Scanner() 
             %setenv('ROS_MASTER_URI', rosMasterURI);
             rosinit; % This is essential for establishing a connection with the ROS master and initialising ROS nodes.
             obj.moveCamera(0, 0.3, 1);  % This instructs the camera to move with a pan angle of 0, a tilt angle of 0.3, and a movement duration of 1 second setting the initial camera position
