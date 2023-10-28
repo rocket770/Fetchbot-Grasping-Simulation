@@ -1,16 +1,16 @@
 # Fetchbot-Grasping-Simulation
 
 Controls the fetch bot to find, move to, and grasp an object in front of it. 
-The code uses matlab to connect to and control the fetch bot. It will first make the fetch bot scan for objects around it, by telling the bot to tilt its camera around while matlab processes the image and looks for a blue object (It will also try to find a better image if possible). Matlab will then calculate the coordinates of the object in the robot base's frame of reference, than use a variety of commands, including a moveit! bridge node written in python to navigate to, and grasp the object. [Here](https://youtu.be/HRn41opEtRI) is a video of it working (this is not my submitted video demo).
+The code uses matlab to connect to and control the fetch bot. It will first make the fetch bot scan for objects around it, by telling the bot to tilt its camera around while matlab processes the image and looks for a given object (It will also try to find a better image if possible). Matlab will then calculate the coordinates of the object in the robot base's frame of reference, than use a variety of commands, including a moveit! bridge node written in python to navigate to, and grasp the object (using inverse kinematics). [Here](https://youtu.be/HRn41opEtRI) is a video of it working (this is not my submitted video demo).
 
-## Contributors
+## CODE Contributors
 
 - **Nick (75%)**
   - Object Searching (matlab/Scanner.m)
-  - Object Coordinate Conversion (Pixels -> Camera Coordinate -> Robot Reference Frame Coordinates)
+  - Object Coordinate Conversion - Pixels -> Camera Coordinate -> Robot Reference Frame Coordinates
   - Robot Movement Script (entire matlab/main.m script)
   - Matlab moveit! Bridge node (matlab_move_it_bridge, package setup and python script)
-  - Environment Setup
+  - Environment Setup (fetch_pickplace)
   - README file
 
 - **Aiden (25%)**
@@ -26,7 +26,7 @@ The code uses matlab to connect to and control the fetch bot. It will first make
 - It may require the robotics toolbox which can be found [here](https://canvas.uts.edu.au/courses/27375/files/5451349?wrap=1).
 
 ### 2. Linux Setup
-- Download the `matlab_moveit_bridge` folder and place it into your `~/catkin_ws/src` folder.
+- Download the `matlab_moveit_bridge` and `fetch_pickplace` folder and place it into your `~/catkin_ws/src` folder.
 - Execute the following commands:
   ```bash
   sudo apt-get update
@@ -47,5 +47,6 @@ The code uses matlab to connect to and control the fetch bot. It will first make
   sudo apt-get install ros-melodic-moveit-msgs
 - The robot's accuracy is dependent on the speed of the computer. For instance, my laptop only succeeds about 50% of the time, but my PC runs it perfectly every time.
   - After research, the issue seems to arise from the physics simulation lagging, and occasionally, MoveIt! not finding joint configurations swiftly enough.
+  - The tilt of the camera also seems a little inconsistent. It seems to be a matlab issue when plotting the figure. As such, the images close once the robot has completed its first move to help imporve this
 
 ## For any questions, email me at nicholas.surmon@student.uts.edu.au    
