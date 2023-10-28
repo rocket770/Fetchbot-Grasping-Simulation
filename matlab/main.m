@@ -14,11 +14,11 @@ scanner = Scanner();
 
 % so far can be 'cube' for blue cube that loads default
 % or can be 'coke' for coke can object
-objectUsed = 'cube';
+objectUsed = 'can';
 
 
-cokeOffsets = [0.055, 0.02, 0.05];
-blueCubeOffsets = [0.07 0.01 0.05];
+cokeOffsets = [0.055, 0.02, 0.06];
+blueCubeOffsets = [0.08 0.01 0.05];
 
 switch objectUsed
     case 'cube'
@@ -54,6 +54,7 @@ disp([X,Y,Z])
 
 % grippers begin by being open to pick the object up
 moveGripper(1)
+close all;
 % To reduce chances of hitting the table so the body of the robot needs to risen by 0.7 within 3 seconds
 moveFetchTorso(0.65, 3.0); 
 pause(3);
@@ -156,7 +157,7 @@ function moveGripper(position)
     
     % Set desired position (0.0 for fully closed) and force
     gripMsg.Goal.Command.Position = position;
-    gripMsg.Goal.Command.MaxEffort = 50.0; 
+    gripMsg.Goal.Command.MaxEffort = 150.0; 
 
     % Publish the message to close the gripper
     send(gripPub, gripMsg);
