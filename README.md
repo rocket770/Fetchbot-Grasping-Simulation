@@ -40,6 +40,7 @@ The code uses matlab to connect to and control the fetch bot. It will first make
 - Download the `run.sh` file.
 - In the same directory, run `./run.sh` and wait until gazebo has launched and the robot arm is set in place.
 - Run the `main.m` matlab code.
+- **EACH TIME YOU WANT TO TRY AGAIN, CLOSE GAZEBO AND ALL 3 TERMINALS, AND THEN REPEAT FROM STEP 2**
 
 ## Possible Issues and Troubleshooting:
 - If `bridge_node.py` does not run, try installing necessary packages with:
