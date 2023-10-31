@@ -1,7 +1,7 @@
 # Fetchbot-Grasping-Simulation
 
 Controls the fetch bot to find, move to, and grasp an object in front of it. 
-The code uses matlab to connect to and control the fetch bot. It will first make the fetch bot scan for objects around it, by telling the bot to tilt its camera around while matlab processes the image and looks for a given object (It will also try to find a better image if possible). Matlab will then calculate the coordinates of the object in the robot base's frame of reference, than use a variety of commands, including a moveit! bridge node written in python to navigate to, and grasp the object (using inverse kinematics). [Here](https://youtu.be/HRn41opEtRI) is a video of it working (this is not my submitted video demo).
+The code uses matlab to connect to and control the fetch bot. It will first make the fetch bot scan for objects around it, by telling the bot to tilt its camera around while matlab processes the image and looks for a given object (It will also try to find a better image if possible). Matlab will then calculate the coordinates of the object in the robot base's frame of reference, than use a variety of commands, including a moveit! bridge node written in python to navigate to, and grasp the object (using inverse kinematics). [Here](https://youtu.be/OMD5SvAikrY) is a video of it working.
 
 ## CODE Contributors
 
@@ -18,6 +18,7 @@ The code uses matlab to connect to and control the fetch bot. It will first make
   - Matlab Code Comments
 
 - **Nimmo Napier-Rowney (0%)**
+   - Nimmo attmeped once to implement VISP a couple days before this was due but couldnt get it working. 
 
 ## Setup Instructions
 
@@ -49,5 +50,6 @@ The code uses matlab to connect to and control the fetch bot. It will first make
 - The robot's accuracy is dependent on the speed of the computer. For instance, my laptop only succeeds about 50% of the time, but my PC runs it perfectly every time.
   - After research, the issue seems to arise from the physics simulation lagging, and occasionally, MoveIt! not finding joint configurations swiftly enough.
   - The tilt of the camera also seems a little inconsistent. It seems to be a matlab issue when plotting the figure. As such, the images close once the robot has completed its first move to help imporve this
+  - If the coke can spawns fallen over on the table, you will need to restart gazebo. I have no idea why this occours.
 
 ## For any questions, email me at nicholas.surmon@student.uts.edu.au    
