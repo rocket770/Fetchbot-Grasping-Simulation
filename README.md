@@ -51,5 +51,3 @@ The code uses matlab to connect to and control the fetch bot. It will first make
   - After research, the issue seems to arise from the physics simulation lagging, and occasionally, MoveIt! not finding joint configurations swiftly enough.
   - The tilt of the camera also seems a little inconsistent. It seems to be a matlab issue when plotting the figure. As such, the images close once the robot has completed its first move to help imporve this
   - If the coke can spawns fallen over on the table, you will need to restart gazebo. I have no idea why this occours.
-
-## For any questions, email me at nicholas.surmon@student.uts.edu.au    
